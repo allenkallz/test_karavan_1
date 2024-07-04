@@ -158,13 +158,13 @@ spec:
     - camel:jackson
   template:
     route:
-      id: route-c69d
+      id: route-73f9
       from:
         id: from-1e91
         uri: kamelet:source
         steps:
           - choice:
-              id: choice-a502
+              id: choice-a5021
               when:
                 - id: when-58a9
                   expression:
