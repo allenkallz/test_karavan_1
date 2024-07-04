@@ -1,0 +1,30 @@
+- route:
+    id: route-1702
+    nodePrefixId: route-300
+    from:
+      id: from-0f20
+      uri: kamelet:timer-source
+      parameters:
+        period: 5000
+        message: |
+          {"first":"Ada","last":"Lovelace"}
+        contentType: "'text/plain'"
+      steps:
+        - setHeader:
+            id: setHeader-e5e9
+            name: CamelAwsS3Key
+            expression:
+              simple:
+                id: simple-8fed
+                expression: >-
+                  camel_data_format/test/${date:now:yyyy}/${date:now:MM}/${date:now:dd}/file-${date:now:yyyyMMddHHmmssSSS}.text
+        - to:
+            id: to-7f4e
+            uri: kamelet:aws-s3-sink
+            parameters:
+              secretKey: "{{secret:aws/AWS_SECRET_ACCESS_KEY}}"
+              accessKey: "{{secret:aws/AWS_ACCESS_KEY_ID}}"
+              bucketNameOrArn: arn:aws:s3:::smartfact-dev-lambda-layer
+              region: eu-west-1
+              keyName: >-
+                camel_data_format/test/${date:now:yyyy}/${date:now:MM}/${date:now:dd}/file-${date:now:yyyyMMddHHmmssSSS}.text
