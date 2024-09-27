@@ -1,6 +1,5 @@
 
-# .github/workflows/webhook-post.yml
-name: Webhook POST Payload Logger
+name: Webhook POST Logger
 
 on:
   workflow_dispatch:
