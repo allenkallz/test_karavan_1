@@ -1,1 +1,18 @@
 
+# .github/workflows/webhook-post.yml
+name: Webhook POST Payload Logger
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: "POST request payload"
+        required: true
+        default: "{}"
+
+jobs:
+  log_payload:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print POST payload
+      run: echo "Payload: ${{ github.event.inputs.payload }}"
