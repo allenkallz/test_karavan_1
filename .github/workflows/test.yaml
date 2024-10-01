@@ -1,13 +1,13 @@
 
 name: Webhook POST Logger
 
-on:
-  workflow_dispatch:
-    inputs:
-      payload:
-        description: "POST request payload"
-        required: true
-        default: "{}"
+on: repository_dispatch
+  # workflow_dispatch:
+  #   inputs:
+  #     payload:
+  #       description: "POST request payload"
+  #       required: true
+  #       default: "{}"
 
 jobs:
   log_payload:
@@ -15,4 +15,4 @@ jobs:
     steps:
     - name: Print POST payload
       run: |
-        echo "Payload: ${{ github.event.inputs.payload }}"
+        echo "Payload: ${{ github.event }}"
